@@ -1,0 +1,59 @@
+name: Test and publish
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm test
+      - run: npm run demo > /tmp/workflow-failure-example.json
+      - run: node src/cli.mjs examples/crm-sample.json markdown > /tmp/workflow-failure-test-plan.md
+      - run: node src/cli.mjs examples/crm-sample.json gherkin > /tmp/workflow-failure.feature
+      - run: npm run build
+      - run: node --check dist/app.mjs && node --check dist/plan.mjs
+      - name: Refuse browser network calls and remote scripts
+        run: |
+          grep -Fq "connect-src 'none'" dist/index.html
+          if grep -Ein '<script[^>]+src="https?://' dist/index.html; then exit 1; fi
+          if grep -En '\b(fetch|XMLHttpRequest|WebSocket|EventSource)\b' dist/app.mjs; then exit 1; fi
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+      pages: write
+      id-token: write
+    environment: github-pages
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm run build
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+      - name: Wait for one visible Pages artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for n in $(seq 1 15); do
+            count=$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts" --jq '[.artifacts[] | select(.name == "github-pages" and (.expired | not))] | length')
+            if [ "$count" = 1 ]; then exit 0; fi
+            sleep 2
+          done
+          echo "Pages artifact did not become visible" >&2
+          exit 1
+      - uses: actions/deploy-pages@v4

@@ -1,0 +1,1 @@
+{"name":"workflow-failure-test-builder","version":"0.1.0","private":true,"type":"module","license":"MIT","engines":{"node":">=20"},"scripts":{"test":"node --test tests/*.test.mjs","demo":"node src/cli.mjs examples/crm-sample.json","build":"node scripts/build.mjs"}}

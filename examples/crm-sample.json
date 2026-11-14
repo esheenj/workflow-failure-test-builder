@@ -1,0 +1,1 @@
+{"project":"Fictional CRM-to-invoice handoff","outcome":"An approved CRM deal creates exactly one draft invoice","flowType":"crm","selected":["duplicate","concurrent","timeout","schema","crash"],"policy":{"maxAttempts":3,"backoffMs":1000,"retentionHours":24}}

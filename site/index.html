@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0a1216">
+<meta name="description" content="Create synthetic integration failure acceptance tests for webhooks, CRM syncs, APIs and AI workflows. Export Gherkin and Markdown without uploading data.">
+<link rel="canonical" href="https://esheenj.github.io/workflow-failure-test-builder/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Workflow Failure Test Builder | Esheen Labs">
+<meta property="og:description" content="Turn the moments when integrations fail into testable scenarios. Free, offline and open source.">
+<meta property="og:url" content="https://esheenj.github.io/workflow-failure-test-builder/">
+<meta name="twitter:card" content="summary">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'none'; img-src 'none'; font-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Workflow Failure Test Builder — Esheen Labs</title>
+<link rel="stylesheet" href="./style.css"><script type="module" src="./app.mjs">
+</script></head><body>
+<a class="skip" href="#workbench">Skip to builder</a>
+<div class="shell">
+<header class="top">
+<a class="brand" href="https://github.com/esheenj/workflow-failure-test-builder">
+<span class="symbol">Σ</span><span>ESHEEN <b>LABS</b><small>ENGINEERING INTELLIGENCE</small></span>
+</a><div class="top-right"><span class="dot"></span> OFFLINE TEST DESIGN <span class="edition">OSS / 018</span></div>
+</header>
+<main>
+<section class="intro">
+<div class="kicker"><span class="kicker-line"></span> DEPENDABLE INTEGRATIONS / TEST ENGINEERING</div>
+<h1>Test the failure.<br><em>Not just the happy path.</em></h1>
+<p>Integrations often look fine until an event arrives twice, a worker restarts or a provider changes its payload. Select the scenarios you care about and generate concrete acceptance tests your team can adapt.</p>
+<div class="highlights"><span>NO LIVE API CALLS</span><span>10 FAILURE PATTERNS</span><span>EXPORT GHERKIN + MARKDOWN</span></div>
+</section>
+<section id="workbench" class="workspace" aria-labelledby="builder-title">
+<div class="section-head"><div><span class="eyebrow">01 / DEFINE YOUR WORKFLOW</span><h2 id="builder-title">Build a test plan</h2></div>
+<button type="button" class="outline" id="restore">Load CRM example ↗</button></div>
+<div class="scope">
+<div><label for="project">Workflow name</label><input id="project" maxlength="80" autocomplete="off" placeholder="e.g. Deal to invoice"></div>
+<div><label for="flowType">Integration category</label><select id="flowType"></select></div>
+<div class="wide"><label for="outcome">What should always be true?</label><input id="outcome" maxlength="140" autocomplete="off" placeholder="e.g. One approved deal creates exactly one draft invoice"></div>
+</div>
+<div class="subhead"><div><span class="eyebrow">02 / CHOOSE THE RISKS</span><h3>What can go wrong?</h3></div><span id="selectedCount">5 of 10 selected</span></div>
+<div class="scenario-grid" id="scenarioGrid" role="group" aria-label="Failure patterns"></div>
+<div class="policy">
+<div><label for="maxAttempts">Max retry attempts</label><input type="number" id="maxAttempts" min="1" max="10" step="1"></div>
+<div><label for="backoffMs">Base backoff (ms)</label><input type="number" id="backoffMs" min="100" max="60000" step="100"></div>
+<div><label for="retentionHours">Key retention (hours)</label><input type="number" id="retentionHours" min="1" max="720" step="1"></div>
+<p>These are fictional assumptions for the generated test brief, not verified settings in your system.</p>
+</div>
+<div class="action-bar"><p>No credentials, payload uploads or production testing. Each generated scenario is a <strong>draft acceptance criterion</strong>, not a passing test.</p>
+<button type="button" id="generate" class="primary">Generate test plan <span aria-hidden="true">→</span></button></div>
+<p id="error" role="alert" aria-live="polite" class="error" hidden></p>
+</section>
+
+<section id="result" class="results" aria-labelledby="result-title" hidden>
+<div class="section-head"><div><span class="eyebrow">03 / TEST ENGINEERING HANDOFF</span><h2 id="result-title">Your failure test plan</h2></div><span class="status" role="status">SYNTHETIC ONLY</span></div>
+<div class="metrics"><div><span>SCENARIOS</span><strong id="caseCount">—</strong></div><div><span>HIGH PRIORITY</span><strong id="highCount">—</strong></div><div><span>EXPECTED CHECKS</span><strong id="checkCount">—</strong></div><div><span>LIVE TESTS EXECUTED</span><strong>0</strong></div></div>
+<p class="notice" id="notice">A starting point for a real test harness, not evidence that an integration is reliable.</p>
+<ol id="testCases" class="test-cases"></ol>
+<div class="export-row"><button type="button" class="outline" id="gherkin">Download Gherkin .feature ↓</button>
+<button type="button" class="outline" id="markdown">Download Markdown brief ↓</button>
+<button type="button" class="outline" id="json">Download JSON plan ↓</button></div>
+</section>
+
+<section class="commercial">
+<div><span class="eyebrow">NEED THE TESTS IMPLEMENTED?</span><h2>From test plan to<br>working integration.</h2><p>A scoped engineering pilot can focus on one workflow, a synthetic failure fixture, an independently runnable acceptance test and a tested remediation plan.</p>
+<div class="commercial-actions"><a class="pilot" href="mailto:info@sigmacode.co.za?subject=Workflow%20failure%20test%20pilot%20enquiry">Email Sigma Code about a pilot ↗</a><a class="secondary-link" href="https://github.com/esheenj/workflow-failure-test-builder/issues/new?template=pilot.yml" rel="noopener noreferrer">GitHub enquiry form ↗</a></div>
+<p class="small">An enquiry is not a confirmed service or payment. Do not send credentials or confidential customer data.</p></div>
+<div class="scope-card"><span class="eyebrow">PILOT SCOPE / SMALL BY DESIGN</span>
+<div><strong>01</strong><span>One integration and a clear business outcome</span></div>
+<div><strong>02</strong><span>Reproduce one important failure with synthetic data</span></div>
+<div><strong>03</strong><span>Implement a test and verify the result</span></div>
+<div><strong>04</strong><span>Document evidence and handoff</span></div></div>
+</section>
+
+<section class="related"><span class="eyebrow">COMPANION OPEN TOOLS</span><h2>Build on the evidence.</h2>
+<div class="related-grid">
+<a href="https://esheenj.github.io/integration-reliability-assessment/"><strong>Integration Reliability Assessment</strong><span>Identify which control needs attention ↗</span></a>
+<a href="https://esheenj.github.io/webhook-idempotency-lab/"><strong>Webhook Idempotency Lab</strong><span>Simulate duplicate and retry decisions ↗</span></a>
+<a href="https://esheenj.github.io/agent-tool-schema-diff-lab/"><strong>Agent Tool Schema Diff Lab</strong><span>Inspect an evolving API or tool schema ↗</span></a>
+</div></section>
+</main>
+<footer><span>© 2026 ESHEEN LABS · ORIGINAL MIT SOFTWARE</span><div><a href="https://sigmacode.co.za/">Sigma Code</a><a href="https://esheenj.github.io/compound-intelligence-starter/">All labs</a><a href="https://github.com/esheenj/workflow-failure-test-builder">Source & tests ↗</a></div></footer>
+</div></body></html>

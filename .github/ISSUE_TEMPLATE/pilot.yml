@@ -1,0 +1,40 @@
+name: Integration failure test pilot
+description: Discuss a bounded synthetic integration-testing project without sharing private data.
+title: "[Workflow test pilot] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This is a public, nonbinding enquiry. Do not share API keys, private endpoints, personal records, production logs or confidential source code.
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Workflow category
+      options:
+        - CRM / customer journey
+        - Webhook or API integration
+        - AI-assisted workflow
+        - Other integration
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+      placeholder: "Example: One CRM deal should create exactly one draft invoice even after duplicate delivery."
+    validations:
+      required: true
+  - type: textarea
+    id: risk
+    attributes:
+      label: Most important hypothetical failure
+      placeholder: "Example: A provider may retry after a timeout, which risks duplicate work."
+    validations:
+      required: false
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy
+      options:
+        - label: I have not shared credentials, personal information, or confidential customer data.
+          required: true
