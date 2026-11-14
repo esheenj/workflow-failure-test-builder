@@ -4,6 +4,12 @@
 
 An original, free, offline and MIT-licensed test-design tool for CRM journeys, webhook consumers, APIs and AI-assisted workflows. Pick failure patterns and export a deterministic structured plan, readable Markdown, and draft Gherkin .feature acceptance scenarios. Nothing is submitted to an external server.
 
+**Part of Sigma Code's Integration Reliability Tools.** This free, local-first utility is for CRM implementers, integration developers, QA teams and automation agencies who need to think beyond successful requests.
+
+**What it helps you produce:** reviewable failure-case plans for retries, duplicate events, timeouts, schema changes and incomplete evidence. Export JSON, Markdown or draft Gherkin acceptance scenarios, then implement and run the actual tests in your own authorized environment.
+
+**What it does not do:** connect to your systems, execute the generated tests or certify production reliability. For a scoped implementation or test-design pilot, see the [engineering pilot enquiry](#engineering-pilot). The tool remains free and MIT licensed.
+
 **Live demo:** https://esheenj.github.io/workflow-failure-test-builder/
 
 ## Local quick start
